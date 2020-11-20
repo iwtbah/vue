@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>计算属性的复杂使用</title>
+</head>
+<body>
+
+<div id="app">
+    <h2>总价格：{{totalPrice}}</h2>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+<script>
+    const app = new Vue({
+        el: "#app",
+        data: {
+            books: [
+                {id: 110, name: "设计模式", price: 119},
+                {id: 111, name: "Java编程思想", price: 80},
+                {id: 112, name: "编码艺术", price: 99},
+                {id: 113, name: "算法导论", price: 150},
+            ]
+        },
+        computed: {
+            totalPrice() {
+
+                /*for (let i = 0; i < this.books.length; i++) {
+                    result += this.books[i].price;
+                }*/
+
+                /*
+                for(let book of this.books) {
+                    result += book.price;
+                 }*/
+
+                let result = this.books.reduce(function (result, book) {
+                    return result + book.price;
+                },0);
+                return result;
+            }
+        }
+    })
+</script>
+</body>
+</html>

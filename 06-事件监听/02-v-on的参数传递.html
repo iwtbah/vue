@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>v-on的参数传递</title>
+</head>
+<body>
+<div id="app">
+    <!-- 事件没传参，括号可以省略可以不省略 -->
+    <button @click="btnClick">按钮1</button>
+    <button @click="btnClick()">按钮2</button>
+    <!-- 事件调用方法需要传参，如果调用时省略了小括号(参数)，Vue将会让浏览器的event对象作为参数传入到方法中-->
+    <button @click="btnClick2(123)">按钮3</button>
+    <button @click="btnClick2()">按钮4</button>
+    <button @click="btnClick2">按钮5</button>
+    <!-- 事件调用时候需要传入event还需要传入其他参数 -->
+    <button @click="btnClick3($event,123)">按钮6</button>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+<script>
+    const app = new Vue({
+        el: "#app",
+        methods: {
+            btnClick() {
+                console.log("点击XXX");
+            },
+            btnClick2(value) {
+                console.log(value + "----------");
+            },
+            btnClick3(event, value) {
+                console.log(event + "----------" + value);
+            }
+        }
+    })
+</script>
+</body>
+</html>

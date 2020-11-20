@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>v-on的修饰符</title>
+    <style>
+        *{
+            margin-bottom: 50px;
+        }
+        button {
+            height: 15px;
+            width: 50px;
+        }
+    </style>
+</head>
+<body>
+
+<div id="app">
+    <!--1. .stop的使用，btn的click事件不会传播，不会冒泡到上层，调用event.stopPropagation() -->
+    <div @click="divClick">
+        aaa
+        <button @click.stop="btnClick"></button>
+    </div>
+    <!-- 2. .prevent 调用event.preventDefault阻止默认行为  -->
+    <form>
+        <input type="submit" value="提交" @click.prevent="submitClick"/>
+    </form>
+    <!--3. 监听键盘的事件 keyup为键盘抬起时触发 -->
+    <input type="text" @keyup="keyUp"><br>
+    <!--4. 监听键盘的事件 keyup.enter为键盘回车键抬起时触发 -->
+    <input type="text" @keyup.enter="keyUp"><br>
+
+    <button @click.once="btn2Click"></button>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+<script>
+    const app = new Vue({
+        el: "#app",
+        data: {},
+        methods: {
+            btnClick() {
+                console.log("点击了按钮");
+            },
+            divClick() {
+                console.log("点击了div");
+            },
+            submitClick() {
+                console.log("点击了submit");
+            },
+            keyUp() {
+                console.log("键盘松开了");
+            },
+            btn2Click() {
+                console.log("点击了按钮2");
+            }
+        }
+    });
+</script>
+</body>
+</html>
